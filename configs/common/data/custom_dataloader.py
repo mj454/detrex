@@ -22,7 +22,7 @@ register_coco_instances("detectramin-test", {}, '/kaggle/working/datasets/coco/a
 dataloader.train = L(build_detection_train_loader)(
     dataset=L(get_detection_dataset_dicts)(names="detectramin-train"),
     mapper=L(DetrDatasetMapper)(
-        augmentation=None,
+        augmentation=[],
         #     L(T.RandomFlip)(),
         #     L(T.ResizeShortestEdge)(
         #         short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800),
@@ -57,7 +57,7 @@ dataloader.train = L(build_detection_train_loader)(
 dataloader.test = L(build_detection_test_loader)(
     dataset=L(get_detection_dataset_dicts)(names="detectramin-test", filter_empty=False),
     mapper=L(DetrDatasetMapper)(
-        augmentation=None,
+        augmentation=[],
         #     L(T.ResizeShortestEdge)(
         #         short_edge_length=800,
         #         max_size=1333,
