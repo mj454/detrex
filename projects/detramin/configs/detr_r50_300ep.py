@@ -8,8 +8,8 @@ train = get_config("common/train.py").train
 
 # modify training config
 # https://dl.fbaipublicfiles.com/detectron2/new_baselines/mask_rcnn_R_50_FPN_400ep_LSJ/42019571/model_final_14d201.pkl
-# train.init_checkpoint = "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
-train.init_checkpoint = "detectron2://new_baselines/mask_rcnn_R_50_FPN_400ep_LSJ/42019571/model_final_14d201.pkl"
+train.init_checkpoint = "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
+# train.init_checkpoint = "detectron2://new_baselines/mask_rcnn_R_50_FPN_400ep_LSJ/42019571/model_final_14d201.pkl"
 train.output_dir = "./output/detramin_r50_300ep"
 train.max_iter = 100000
 train.checkpointer=dict(period=100, max_to_keep=100)
