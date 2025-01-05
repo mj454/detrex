@@ -16,11 +16,11 @@ from detrex.data import DetrDatasetMapper
 
 dataloader = OmegaConf.create()
 
-register_coco_instances("tablo-train", {}, '/kaggle/working/datasets/coco/annotations/instances_train2017.json', '/kaggle/working/datasets/coco/train2017')
-register_coco_instances("tablo-test", {}, '/kaggle/working/datasets/coco/annotations/instances_val2017.json', '/kaggle/working/datasets/coco/val2017')
+register_coco_instances("detectraim-train", {}, '/kaggle/working/datasets/coco/annotations/instances_train2017.json', '/kaggle/working/datasets/coco/train2017')
+register_coco_instances("detectramin-test", {}, '/kaggle/working/datasets/coco/annotations/instances_val2017.json', '/kaggle/working/datasets/coco/val2017')
 
 dataloader.train = L(build_detection_train_loader)(
-    dataset=L(get_detection_dataset_dicts)(names="tablo-train"),
+    dataset=L(get_detection_dataset_dicts)(names="detectraim-train"),
     mapper=L(DetrDatasetMapper)(
         augmentation=[
             L(T.RandomFlip)(),
@@ -55,7 +55,7 @@ dataloader.train = L(build_detection_train_loader)(
 )
 
 dataloader.test = L(build_detection_test_loader)(
-    dataset=L(get_detection_dataset_dicts)(names="tablo-test", filter_empty=False),
+    dataset=L(get_detection_dataset_dicts)(names="detectraim-test", filter_empty=False),
     mapper=L(DetrDatasetMapper)(
         augmentation=[
             L(T.ResizeShortestEdge)(

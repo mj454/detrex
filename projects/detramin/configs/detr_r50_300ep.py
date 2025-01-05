@@ -2,17 +2,18 @@ from detrex.config import get_config
 from .models.detr_r50 import model
 
 dataloader = get_config("common/data/custom_dataloader.py").dataloader
-lr_multiplier = get_config("common/coco_schedule.py").lr_multiplier_50ep
+lr_multiplier = get_config("common/coco_schedule.py").lr_multiplier_12ep
 optimizer = get_config("common/optim.py").AdamW
 train = get_config("common/train.py").train
 
 # modify training config
 train.init_checkpoint = "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
 train.output_dir = "./output/detramin_r50_300ep"
-train.max_iter = 554400
-
+train.max_iter = 1000
+train.checkpointer=dict(period=1000, max_to_keep=100)
+train.eval_period = 1000
 # modify lr_multiplier
-lr_multiplier.scheduler.milestones = [369600, 554400]
+lr_multiplier.scheduler.milestones = [500, 1000]
 
 # modify optimizer config
 optimizer.weight_decay = 1e-4
