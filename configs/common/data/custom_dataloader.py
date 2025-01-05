@@ -22,30 +22,30 @@ register_coco_instances("detectramin-test", {}, '/kaggle/working/datasets/coco/a
 dataloader.train = L(build_detection_train_loader)(
     dataset=L(get_detection_dataset_dicts)(names="detectramin-train"),
     mapper=L(DetrDatasetMapper)(
-        augmentation=[
-            L(T.RandomFlip)(),
-            L(T.ResizeShortestEdge)(
-                short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800),
-                max_size=1333,
-                sample_style="choice",
-            ),
-        ],
-        augmentation_with_crop=[
-            L(T.RandomFlip)(),
-            L(T.ResizeShortestEdge)(
-                short_edge_length=(400, 500, 600),
-                sample_style="choice",
-            ),
-            L(T.RandomCrop)(
-                crop_type="absolute_range",
-                crop_size=(384, 600),
-            ),
-            L(T.ResizeShortestEdge)(
-                short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800),
-                max_size=1333,
-                sample_style="choice",
-            ),
-        ],
+        # augmentation=[
+        #     L(T.RandomFlip)(),
+        #     L(T.ResizeShortestEdge)(
+        #         short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800),
+        #         max_size=1333,
+        #         sample_style="choice",
+        #     ),
+        # ],
+        # augmentation_with_crop=[
+        #     L(T.RandomFlip)(),
+        #     L(T.ResizeShortestEdge)(
+        #         short_edge_length=(400, 500, 600),
+        #         sample_style="choice",
+        #     ),
+        #     L(T.RandomCrop)(
+        #         crop_type="absolute_range",
+        #         crop_size=(384, 600),
+        #     ),
+        #     L(T.ResizeShortestEdge)(
+        #         short_edge_length=(480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800),
+        #         max_size=1333,
+        #         sample_style="choice",
+        #     ),
+        # ],
         is_train=True,
         mask_on=False,
         img_format="RGB",
@@ -57,13 +57,13 @@ dataloader.train = L(build_detection_train_loader)(
 dataloader.test = L(build_detection_test_loader)(
     dataset=L(get_detection_dataset_dicts)(names="detectramin-test", filter_empty=False),
     mapper=L(DetrDatasetMapper)(
-        augmentation=[
-            L(T.ResizeShortestEdge)(
-                short_edge_length=800,
-                max_size=1333,
-            ),
-        ],
-        augmentation_with_crop=None,
+        # augmentation=[
+        #     L(T.ResizeShortestEdge)(
+        #         short_edge_length=800,
+        #         max_size=1333,
+        #     ),
+        # ],
+        # augmentation_with_crop=None,
         is_train=False,
         mask_on=False,
         img_format="RGB",
