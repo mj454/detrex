@@ -9,11 +9,11 @@ train = get_config("common/train.py").train
 # modify training config
 train.init_checkpoint = "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
 train.output_dir = "./output/detramin_r50_300ep"
-train.max_iter = 1000
-train.checkpointer=dict(period=1000, max_to_keep=100)
-train.eval_period = 1000
+train.max_iter = 100
+train.checkpointer=dict(period=100, max_to_keep=100)
+train.eval_period = 100
 # modify lr_multiplier
-lr_multiplier.scheduler.milestones = [500, 1000]
+lr_multiplier.scheduler.milestones = [50, 100]
 
 # modify optimizer config
 optimizer.weight_decay = 1e-4
