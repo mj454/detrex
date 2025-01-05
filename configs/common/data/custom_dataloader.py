@@ -51,7 +51,7 @@ dataloader.train = L(build_detection_train_loader)(
         img_format="RGB",
     ),
     total_batch_size=4,
-    num_workers=4,
+    num_workers=8,
 )
 
 dataloader.test = L(build_detection_test_loader)(
