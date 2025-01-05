@@ -8,7 +8,7 @@ train = get_config("common/train.py").train
 
 # modify training config
 train.init_checkpoint = "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
-train.output_dir = "./output/detr_r50_300ep"
+train.output_dir = "./output/detramin_r50_300ep"
 train.max_iter = 554400
 
 # modify lr_multiplier
@@ -20,4 +20,4 @@ optimizer.params.lr_factor_func = lambda module_name: 0.1 if "backbone" in modul
 
 # modify dataloader config
 dataloader.train.num_workers = 16
-dataloader.train.total_batch_size = 64
+dataloader.train.total_batch_size = 8
