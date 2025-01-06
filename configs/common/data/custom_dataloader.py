@@ -50,8 +50,8 @@ dataloader.train = L(build_detection_train_loader)(
         mask_on=False,
         img_format="RGB",
     ),
-    total_batch_size=4,
-    num_workers=8,
+    total_batch_size=2,
+    num_workers=4,
 )
 
 dataloader.test = L(build_detection_test_loader)(
