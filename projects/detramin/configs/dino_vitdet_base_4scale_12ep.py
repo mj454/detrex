@@ -1,5 +1,5 @@
 from detrex.config import get_config
-from ..models.dino_vitdet import model
+from .models.dino_vitdet import model
 
 # get default config
 dataloader = get_config("common/data/custom_dataloader.py").dataloader
@@ -10,7 +10,7 @@ train = get_config("common/train.py").train
 
 # modify training config
 train.init_checkpoint = "detectron2://ImageNetPretrained/MAE/mae_pretrain_vit_base.pth"
-train.output_dir = "./output/dino_vitdet_base_12ep"
+train.output_dir = "./output/dino_vitdetamin_base_12ep"
 
 # max training iterations
 train.max_iter = 90000
