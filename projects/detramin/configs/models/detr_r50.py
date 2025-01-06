@@ -53,7 +53,7 @@ model = L(DETR)(
     ),
     embed_dim=256,
     num_classes=48,
-    num_queries=25,
+    num_queries=200,
     criterion=L(SetCriterion)(
         num_classes=48,
         matcher=L(HungarianMatcher)(
