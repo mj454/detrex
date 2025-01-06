@@ -9,7 +9,7 @@ train = get_config("common/train.py").train
 # modify training config
 # https://dl.fbaipublicfiles.com/detectron2/new_baselines/mask_rcnn_R_50_FPN_400ep_LSJ/42019571/model_final_14d201.pkl
 # https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_C4_1x/137257644/model_final_721ade.pkl
-train.init_checkpoint = "detectron2://COCO-Detection/faster_rcnn_R_50_C4_1x/137257644/model_final_721ade.pkl"
+train.init_checkpoint = "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
 # train.init_checkpoint = "detectron2://new_baselines/mask_rcnn_R_50_FPN_400ep_LSJ/42019571/model_final_14d201.pkl"
 train.output_dir = "./output/detramin_r50_300ep"
 train.max_iter = 100000
