@@ -13,9 +13,9 @@ train.output_dir = "./output/dino_r50_4scale_12ep"
 
 # max training iterations
 train.max_iter = 90000
-train.eval_period = 5000
+train.eval_period = 100
 train.log_period = 20
-train.checkpointer.period = 5000
+train.checkpointer.period = 500
 
 # gradient clipping for training
 train.clip_grad.enabled = True
