@@ -38,4 +38,4 @@ dataloader.train.num_workers = 4
 # please notice that this is total batch size.
 # surpose you're using 4 gpus for training and the batch size for
 # each gpu is 16/4 = 4
-dataloader.train.total_batch_size = 4
+dataloader.train.total_batch_size = 2
