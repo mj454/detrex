@@ -426,8 +426,22 @@ class DINOTransformer(nn.Module):
             self.decoder.bbox_embed[self.decoder.num_layers](output_memory) + output_proposals
         )  # unsigmoided.
 
+        topk_logits = enc_outputs_class.max(-1)[0]
+
         topk = self.two_stage_num_proposals
-        topk_proposals = torch.topk(enc_outputs_class.max(-1)[0], topk, dim=1)[1]
+        if topk > topk_logits.shape[-1]:
+                missing =  topk-topk_logits.shape[-1]
+                repeat_pad = topk_logits.clone().detach()[:,-missing:]
+                topk_logits = torch.cat([topk_logits, repeat_pad], dim=-1)
+                repeat_pad = output_proposals.clone().detach()[:,-missing:, :]
+                output_proposals = torch.cat([output_proposals, repeat_pad], dim=-2)
+                repeat_pad = enc_outputs_coord_unselected.clone().detach()[:,-missing:, :]
+                enc_outputs_coord_unselected = torch.cat([enc_outputs_coord_unselected, repeat_pad], dim=-2)
+                repeat_pad = output_memory.clone().detach()[:,-missing:, :]
+                output_memory = torch.cat([output_memory, repeat_pad], dim=-2)
+                topk_proposals = torch.topk(topk_logits, topk, dim=1)[1]  # bs, nq
+        else:
+            topk_proposals = torch.topk(enc_outputs_class.max(-1)[0], topk, dim=1)[1]
 
         # extract region proposal boxes
         topk_coords_unact = torch.gather(
