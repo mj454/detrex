@@ -441,7 +441,7 @@ class DINOTransformer(nn.Module):
                 output_memory = torch.cat([output_memory, repeat_pad], dim=-2)
                 topk_proposals = torch.topk(topk_logits, topk, dim=1)[1]  # bs, nq
         else:
-            topk_proposals = torch.topk(enc_outputs_class.max(-1)[0], topk, dim=1)[1]
+            topk_proposals = torch.topk(topk_logits, topk, dim=1)[1]
 
         # extract region proposal boxes
         topk_coords_unact = torch.gather(
