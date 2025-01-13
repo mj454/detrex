@@ -73,11 +73,11 @@ model = L(DINO)(
         two_stage_num_proposals="${..num_queries}",
     ),
     embed_dim=256,
-    num_classes=43,
+    num_classes=47,
     num_queries=900,
     aux_loss=True,
     criterion=L(DINOCriterion)(
-        num_classes=43,
+        num_classes=47,
         matcher=L(HungarianMatcher)(
             cost_class=2.0,
             cost_bbox=5.0,
