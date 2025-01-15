@@ -12,10 +12,10 @@ train.init_checkpoint = "/path/to/swin_tiny_patch4_window7_224_22kto1k_finetune.
 train.output_dir = "./output/dino_swin_tiny_224_4scale_12ep_22kto1k_finetune"
 
 # max training iterations
-train.max_iter = 12000
+train.max_iter = 36000
 train.eval_period = 1000
 train.log_period = 20
-train.checkpointer.period = 1000
+train.checkpointer.period = 3000
 
 # gradient clipping for training
 train.clip_grad.enabled = True
@@ -33,9 +33,9 @@ optimizer.weight_decay = 1e-4
 optimizer.params.lr_factor_func = lambda module_name: 0.1 if "backbone" in module_name else 1
 
 # modify dataloader config
-dataloader.train.num_workers = 2
+dataloader.train.num_workers = 16
 
 # please notice that this is total batch size.
 # surpose you're using 4 gpus for training and the batch size for
 # each gpu is 16/4 = 4
-dataloader.train.total_batch_size = 2
+dataloader.train.total_batch_size = 16
