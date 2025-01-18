@@ -12,10 +12,10 @@ train.init_checkpoint = "/path/to/swin_tiny_patch4_window7_224_22kto1k_finetune.
 train.output_dir = "./output/dino_swin_tiny_224_4scale_12ep_22kto1k_finetune"
 
 # max training iterations
-train.max_iter = 36000
+train.max_iter = 24000
 train.eval_period = 1000
 train.log_period = 20
-train.checkpointer.period = 3000
+train.checkpointer.period = 2000
 
 # gradient clipping for training
 train.clip_grad.enabled = True
